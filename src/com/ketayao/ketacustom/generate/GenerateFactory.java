@@ -53,6 +53,7 @@ public class GenerateFactory {
 			}
 			new GenerateCode(FileType.ENTITY).generate(table);
 			new GenerateCode(FileType.DAO).generate(table);
+			new GenerateCode(FileType.DAOMAPPER).generate(table);
 			new GenerateCode(FileType.SERVICE).generate(table);
 //			new GenerateCode(FileType.SERVICE_IMPL).generate(table);
 			//new GenerateCode(FileType.CONTROLLER).generate(table);

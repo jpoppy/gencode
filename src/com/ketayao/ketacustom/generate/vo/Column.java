@@ -17,7 +17,6 @@ public class Column {
 	private String fieldName;// entity field名称
 	private String setMethod;// set 方法名
 	private String getMethod;// get 方法名
-	private Table table;
 
 	public int getPosition() {
 		return position;
@@ -107,13 +106,6 @@ public class Column {
 		this.fieldName = fieldName;
 	}
 
-	public Table getTable() {
-		return table;
-	}
-
-	public void setTable(Table table) {
-		this.table = table;
-	}
 
 	public String getSetMethod() {
 		return setMethod;
@@ -131,10 +123,6 @@ public class Column {
 		this.getMethod = getMethod;
 	}
 
-	@Override
-	public String toString() {
-		return "Column [comment=" + comment + ", defaultValue=" + defaultValue + ", digits=" + digits + ", fieldName=" + fieldName + ", javaType=" + javaType + ", name=" + name + ", nullable="
-				+ nullable + ", size=" + size + ", table=" + table + ", type=" + type + "]";
-	}
+	
 
 }

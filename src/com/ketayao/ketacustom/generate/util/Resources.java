@@ -91,6 +91,7 @@ public class Resources {
 	
 	public static final String JAVA_ENTITY_TEMPLATE = "java_entity.jetx";
 	public static final String JAVA_DAO_TEMPLATE = "java_dao.jetx";
+	public static final String JAVA_DAO_MAPPER_TEMPLATE = "xml_daomapper.jetx";
 	public static final String JAVA_SERVICE_TEMPLATE = "java_service.jetx";
 	public static final String JAVA_SERVICE_IMPL_TEMPLATE = "java_service_impl.ftl";
 	public static final String JAVA_CONTROLLER_TEMPLATE = "java_controller.jetx";

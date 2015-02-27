@@ -48,7 +48,11 @@ public class Mysql extends DataSource {
 			// 这里没有提供获取当前列是否主键/外键的信息提示
 			Column col = new Column();
 			col.setName(rs.getString("COLUMN_NAME"));
-			col.setType(rs.getString("TYPE_NAME"));
+			String type = rs.getString("TYPE_NAME");
+			if ("INT".equals(type)) {
+				type = "INTEGER";
+			}
+			col.setType(type);
 			col.setSize(rs.getInt("COLUMN_SIZE"));
 			col.setNullable(rs.getBoolean("NULLABLE"));
 			col.setDigits(rs.getInt("DECIMAL_DIGITS"));

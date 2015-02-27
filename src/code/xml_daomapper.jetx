@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+#define(String pknEntity,String tableName,boolean hasDate,boolean hasBigDecimal,String className,String pknDAO)
+#define(Column pk,List columns)
+<mapper namespace="${pknDAO}.${className}Mapper">
+	<cache />
+	<resultMap id="BaseResultMap" type="${pknEntity}.${className}">
+		<id column="${pk.name}" property="${pk.fieldName}" jdbcType="${pk.type}" />
+		#for(Column column : columns)
+		<result column="${column.name}" property="${column.fieldName}" jdbcType="${column.type}" />
+		#end
+	</resultMap>
+	<sql id="Base_Column_List">
+		${pk.name} ,#for(Column column : columns)${column.name}#if(!for.last) ,#end#end 
+	</sql>
+	<select id="selectByColoum" resultMap="BaseResultMap" parameterType="${pknEntity}.${className}">
+		select
+		<include refid="Base_Column_List" />
+		from ${tableName}
+		<where>
+			<if test="@Ognl@isNotBlank(${pk.fieldName})">
+				and ${pk.name}=#{${pk.fieldName},jdbcType=${pk.type}}
+			</if>
+			#for(Column column : columns)
+			<if test="@Ognl@isNotBlank(${column.fieldName})">
+				and ${column.name}=#{${column.fieldName},jdbcType=${column.type}}
+			</if>
+			#end
+		</where>
+
+	</select>
+	<select id="selectByMap" resultMap="BaseResultMap" parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from ${tableName}
+		<where>
+			<if test="@Ognl@isNotBlank(${pk.fieldName})">
+				and ${pk.name}=#{${pk.fieldName},jdbcType=${pk.type}}
+			</if>
+			#for(Column column : columns)
+			<if test="@Ognl@isNotBlank(${column.fieldName})">
+				and ${column.name}=#{${column.fieldName},jdbcType=${column.type}}
+			</if>
+			#end
+		</where>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ${tableName}
+		where ${pk.name} = #{${pk.fieldName},jdbcType=${pk.type}}
+	</select>
+	<delete id="deleteByPrimaryKey">
+		delete from ${tableName}
+		where ${pk.name} = #{${pk.fieldName},jdbcType=${pk.type}}
+	</delete>
+	<delete id="deleteBatchByPrimaryKey" parameterType="java.util.List">
+		delete from ${tableName} where ${pk.name} in
+		<foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	<insert id="insert" parameterType="${pknEntity}.${className}">
+		insert into ${tableName} 
+		(${pk.name} ,#for(Column column : columns)${column.name}#if(!for.last) ,#end#end )
+		values 
+		(#{${pk.fieldName},jdbcType=${pk.type}}, 
+		#for(Column column : columns)
+		#{${column.fieldName},jdbcType=${column.type}}#if(!for.last) ,#end#end
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="${pknEntity}.${className}">
+		insert into ${tableName} 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="@Ognl@isNotBlank(${pk.fieldName})">
+				${pk.name},
+			</if>
+			#for(Column column : columns)
+			<if test="@Ognl@isNotBlank(${column.fieldName})">
+				${column.name},
+			</if>
+			#end
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="@Ognl@isNotBlank(${pk.fieldName})">
+				#{${pk.fieldName},jdbcType=${pk.type}},
+			</if>
+			#for(Column column : columns)
+			<if test="@Ognl@isNotBlank(${column.fieldName})">
+				#{${column.fieldName},jdbcType=${column.type}},
+			</if>
+			#end
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="${pknEntity}.${className}">
+		update ${tableName} 
+		<set>
+			#for(Column column : columns)
+			<if test="@Ognl@isNotBlank(${column.fieldName})">
+				${column.name} = #{${column.fieldName},jdbcType=${column.type}} ,
+			</if>
+			#end
+		</set>
+		where ${pk.name} = #{${pk.fieldName},jdbcType=${pk.type}}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="${pknEntity}.${className}">
+		update t_org
+		set 
+		#for(Column column : columns)
+		${column.name} = #{${column.fieldName},jdbcType=${column.type}}#if(!for.last) ,#end
+		#end
+		where ${pk.name} = #{${pk.fieldName},jdbcType=${pk.type}}
+	</update>
+</mapper>

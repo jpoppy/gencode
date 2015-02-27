@@ -55,8 +55,13 @@ public class GenerateCode extends AbstractGenerate implements Generate {
 
 			logger.info(fileType.getType() + ": {}", filePath);
 
-			// 生成jsp
-		} else if (fileType.getFileNameExtension().endsWith(".jsp")) {
+			
+		} else if(fileType.getFileNameExtension().endsWith(".xml")){//生成到DAOmapper
+			String filePath = javaPath + fileType.getJavaStorePath() + separator + table.getClazzName() + fileType.getFileNameExtension();
+			FileUtils.writeFile(content.toString(), filePath);
+
+			logger.info(fileType.getType() + ": {}", filePath);
+		}else if (fileType.getFileNameExtension().endsWith(".jsp")) {// 生成jsp
 			String filePath = viewPath + Resources.TPL_REQUEST_MAPPING + separator + fileType.getFileNameExtension();
 			FileUtils.writeFile(content.toString(), filePath);
 

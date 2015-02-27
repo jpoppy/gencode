@@ -1,4 +1,4 @@
-#define(String pknService,String pknEntity,String className,Column pk)
+#define(String pknService,String pknEntity,String className,Column pk,String pknDAO)
 package ${pknService};
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +9,8 @@ import com.ampthon.frame.base.service.BaseServiceImpl;
 
 
 import ${pknEntity}.${className};
-import ${pknEntity}.${className}Mapper;
-
+import ${pknDAO}.${className}Mapper;
+@Service
 public class ${className}Service extends BaseServiceImpl<${className}, ${pk.javaType}>{
 	@Autowired
 	private ${className}Mapper ${lower(className)}Mapper;
