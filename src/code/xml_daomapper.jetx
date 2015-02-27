@@ -27,7 +27,6 @@
 			</if>
 			#end
 		</where>
-
 	</select>
 	<select id="selectByMap" resultMap="BaseResultMap" parameterType="map">
 		select
@@ -43,6 +42,9 @@
 			</if>
 			#end
 		</where>
+		<if test="@Ognl@isNotBlank(orderSql)">
+			${orderSql}
+		</if>
 	</select>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap">
 		select
