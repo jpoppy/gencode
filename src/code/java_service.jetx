@@ -1,0 +1,22 @@
+#define(String pknService,String pknEntity,String className,Column pk)
+package ${pknService};
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ampthon.frame.base.dao.IBaseDaoMapper;
+import com.ampthon.frame.base.service.BaseServiceImpl;
+
+
+import ${pknEntity}.${className};
+import ${pknEntity}.${className}Mapper;
+
+public class ${className}Service extends BaseServiceImpl<${className}, ${pk.javaType}>{
+	@Autowired
+	private ${className}Mapper ${lower(className)}Mapper;
+
+	@Override
+	public IBaseDaoMapper<${className}, ${pk.javaType}> getDao() {
+		return ${lower(className)}Mapper;
+	}
+}

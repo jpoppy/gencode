@@ -1,0 +1,10 @@
+#define(String pknDAO,String pknEntity,String className,Column pk)
+package ${pknDAO};
+
+import com.ampthon.frame.base.dao.IBaseDaoMapper;
+
+import ${pknEntity}.${className};
+
+public interface ${className}Mapper extends IBaseDaoMapper<${className}, ${pk.javaType}> {
+
+}

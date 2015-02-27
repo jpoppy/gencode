@@ -1,0 +1,10 @@
+*.class
+/build/
+/classes/
+/target/
+/bin/
+/generate/
+# Package Files #
+#*.jar
+*.war
+*.ear

@@ -1,0 +1,61 @@
+#define(String pknEntity,String tableName,boolean hasDate,boolean hasBigDecimal,String className)
+package ${pknEntity};
+#if(hasDate == true)
+import java.util.Date;
+#end
+#if(hasBigDecimal == true)
+import java.math.BigDecimal;
+#end
+import java.io.Serializable;
+#define(Column pk,List columns)
+/**
+ * @Description table name is ${tableName}
+ * @author chen.bing
+ *
+ * @version ${now()}
+ */
+public class ${className} implements Serializable{
+
+    private static final long serialVersionUID = 1L;
+    
+	/**
+	 * ${pk.comment}
+	 */
+	private ${pk.javaType} ${pk.fieldName};   
+
+    #for(Column column : columns)
+	/**
+	 * ${column.comment}
+	 */
+    private ${column.javaType} ${column.fieldName};
+    
+    #end
+	
+	public void ${pk.setMethod}(${pk.javaType} ${pk.fieldName}){
+       this.${pk.fieldName} = ${pk.fieldName};
+    }
+    
+    /**
+     * @return the ${pk.fieldName} 
+     */
+    public ${pk.javaType} ${pk.getMethod}(){
+       return this.${pk.fieldName};
+    }
+	
+	#for(Column column : columns)
+	
+	/**
+	 * @param ${column.fieldName} the ${column.fieldName} to set
+	 */
+    public void ${column.setMethod}(${column.javaType} ${column.fieldName}){
+       this.${column.fieldName} = ${column.fieldName};
+    }
+    
+    /**
+     * @return the ${column.fieldName} 
+     */
+    public ${column.javaType} ${column.getMethod}(){
+       return this.${column.fieldName};
+    }
+	#end
+}
