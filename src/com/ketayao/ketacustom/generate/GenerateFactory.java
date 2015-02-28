@@ -67,9 +67,9 @@ public class GenerateFactory {
 			if (table == null) {
 				init();
 			}
-			//new GenerateCode(FileType.JETX_CREATE).generate(table);
+			new GenerateCode(FileType.JETX_CREATE).generate(table);
 			new GenerateCode(FileType.JETX_LIST).generate(table);
-			//new GenerateCode(FileType.JETX_UPDATE).generate(table);
+			new GenerateCode(FileType.JETX_UPDATE).generate(table);
 			//new GenerateCode(FileType.JETX_VIEW).generate(table);
 		} catch (Exception e) {
 			e.printStackTrace();

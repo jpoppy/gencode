@@ -17,9 +17,9 @@ public enum FileType {
 	SERVICE_IMPL("service.impl", Resources.PKN_SERVICE_IMPL,Resources.JAVA_SERVICE_IMPL_TEMPLATE,"ServiceImpl.java"), 
 	CONTROLLER("controller", Resources.PKN_CONTROLLER,Resources.JAVA_CONTROLLER_TEMPLATE,"Controller.java"), 
 	
-	JETX_LIST("jetx_list", null,Resources.JETX_LIST_TEMPLATE,"list.jetx"),
-	JETX_CREATE("jetx_create", null,Resources.JETX_CREATE_TEMPLATE,"create.jetx"),
-	JETX_UPDATE("jetx_update", null,Resources.JETX_UPDATE_TEMPLATE,"update.jetx"),
+	JETX_LIST("jetx_list", null,Resources.JETX_LIST_TEMPLATE,"List.jetx"),
+	JETX_CREATE("jetx_add", null,Resources.JETX_CREATE_TEMPLATE,"Add.jetx"),
+	JETX_UPDATE("jetx_edit", null,Resources.JETX_UPDATE_TEMPLATE,"Edit.jetx"),
 	JETX_VIEW("jetx_view", null,Resources.JETX_VIEW_TEMPLATE,"view.jetx");
 	
 	

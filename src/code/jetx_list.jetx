@@ -32,6 +32,9 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
+			#[[#tag hasPermission("]]#/${requestMapping}/add")
+			<li><a class="add" href="#[[${CONTEXT_PATH}/]]#${requestMapping}/add" height="470" target="dialog" title="添加"><span>添加</span></a></li>
+			#[[#end]]#
 			#[[#tag hasPermission("]]#/${requestMapping}/deleteBatch")
 			<li>
 			<a title="确实要删除这些记录吗?" target="selectedTodo" rel="ids" postType="string" href="#[[${CONTEXT_PATH}]]#/${requestMapping}/deleteBatch" class="delete">
@@ -67,7 +70,12 @@
 				<td>#[[${item.]]#${column.fieldName}#[[}]]#</td>
 				#end
 				<td>
+				#[[#tag hasPermission("]]#/${requestMapping}/delete")
 				<a title="确定要删除吗？" target="ajaxTodo" href="#[[${CONTEXT_PATH}]]#/${requestMapping}/delete?id=#[[${item.]]#${pk.fieldName}#[[}]]#" class="btnDel">删除</a> 
+				#[[#end]]#
+				#[[#tag hasPermission("]]#/${requestMapping}/update")
+				<a title="编辑"  height="470" target="dialog" href="#[[${CONTEXT_PATH}/]]#${requestMapping}/update?id=#[[${item.]]#${pk.fieldName}#[[}]]#" class="btnEdit">编辑</a>
+				#[[#end]]#
 				</td>
 			</tr>
 			#[[#end]]#

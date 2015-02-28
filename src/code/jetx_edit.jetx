@@ -1,0 +1,21 @@
+#define(String requestMapping,String className)
+#define(Column pk,List columns)
+#[[#define(]]#${className}#[[ editItem)]]#
+<div class="pageContent">
+	<form method="post" action="#[[${CONTEXT_PATH}/]]#${requestMapping}/update" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+		<div class="pageFormContent" layoutH="56">
+			<input type="hidden" name="${pk.fieldName}" value="#[[${editItem.]]#${pk.fieldName}#[[}]]#">
+			#for(Column column : columns)
+			<p>
+				#if(column.comment != "")
+				<label>${column.comment}：</label> 
+				#else
+				<label>${column.fieldName}：</label> 
+				#end
+				<input name="${column.fieldName}" value="#[[${editItem.]]#${column.fieldName}#[[}]]#" maxlength="${column.size}" type="text" class='#if(!column.nullable)required#end #if(column.javaType=="Short"||column.javaType=="Integer"||column.javaType=="Long")digits#elseif(column.javaType=="Float"||column.javaType=="Double")number#end' />
+			</p>
+			#end
+		</div>
+		#[[#include("/dwzcommon/saveFormBar.jetx")]]#
+	</form>
+</div>

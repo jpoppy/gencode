@@ -89,7 +89,7 @@ public class Resources {
 	public static final String JAVA_CONTROLLER_TEMPLATE = "java_controller.jetx";
 
 	public static final String JETX_LIST_TEMPLATE = "jetx_list.jetx";
-	public static final String JETX_CREATE_TEMPLATE = "jetx_create.jetx";
-	public static final String JETX_UPDATE_TEMPLATE = "jetx_update.jetx";
+	public static final String JETX_CREATE_TEMPLATE = "jetx_add.jetx";
+	public static final String JETX_UPDATE_TEMPLATE = "jetx_edit.jetx";
 	public static final String JETX_VIEW_TEMPLATE = "jetx_view.jetx";
 }

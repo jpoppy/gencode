@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -36,9 +37,9 @@ public class ${className}Controller extends BaseController{
 	private ${className}Service ${instanceName}Service;
 	private static final Logger logger = LoggerFactory.getLogger(${className}Controller.class);
 	
-	private static final String CREATE = "/${requestMapping}/create";
-	private static final String UPDATE = "/${requestMapping}/update";
-	private static final String LIST = "/${requestMapping}/${instanceName}list";
+	private static final String CREATE = "/${requestMapping}/${instanceName}Add";
+	private static final String UPDATE = "/${requestMapping}/${instanceName}Edit";
+	private static final String LIST = "/${requestMapping}/${instanceName}List";
 	private static final String VIEW = "/${requestMapping}/view";
 	
 	@RequestMapping("/list")
@@ -97,4 +98,29 @@ public class ${className}Controller extends BaseController{
 		return AjaxDone.newOk("信息${functionName}删除成功", "");
 	}
 	
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	public String add() {
+		return CREATE;
+	}
+	
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	@ResponseBody
+	public AjaxDone add(${className} ${instanceName}) {
+		${instanceName}Service.insertSelective(${instanceName});
+		return AjaxDone.newOk("添加成功");
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public String update(@RequestParam("id") ${pk.javaType} id,ModelMap map) {
+		${className} editItem = ${instanceName}Service.selectByPrimaryKey(id);
+		map.put("editItem",editItem);
+		return UPDATE;
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	@ResponseBody
+	public AjaxDone update(${className} ${instanceName}) {
+		${instanceName}Service.updateByPrimaryKeySelective(${instanceName});
+		return AjaxDone.newOk("修改成功");
+	}
 }
