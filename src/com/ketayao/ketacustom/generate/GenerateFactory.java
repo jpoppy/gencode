@@ -56,7 +56,7 @@ public class GenerateFactory {
 			new GenerateCode(FileType.DAOMAPPER).generate(table);
 			new GenerateCode(FileType.SERVICE).generate(table);
 //			new GenerateCode(FileType.SERVICE_IMPL).generate(table);
-			//new GenerateCode(FileType.CONTROLLER).generate(table);
+			new GenerateCode(FileType.CONTROLLER).generate(table);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
