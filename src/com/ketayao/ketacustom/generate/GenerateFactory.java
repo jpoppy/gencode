@@ -62,15 +62,15 @@ public class GenerateFactory {
 		}
 	}
 	
-	public void genJspTemplate() {
+	public void genJextTemplate() {
 		try {
 			if (table == null) {
 				init();
 			}
-			new GenerateCode(FileType.JSP_CREATE).generate(table);
-			new GenerateCode(FileType.JSP_LIST).generate(table);
-			new GenerateCode(FileType.JSP_UPDATE).generate(table);
-			new GenerateCode(FileType.JSP_VIEW).generate(table);
+			//new GenerateCode(FileType.JETX_CREATE).generate(table);
+			new GenerateCode(FileType.JETX_LIST).generate(table);
+			//new GenerateCode(FileType.JETX_UPDATE).generate(table);
+			//new GenerateCode(FileType.JETX_VIEW).generate(table);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

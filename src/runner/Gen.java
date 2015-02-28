@@ -12,5 +12,6 @@ public class Gen {
 	public static void main(String[] args) {
 		GenerateFactory factory = new GenerateFactory();
 		factory.genJavaTemplate();
+		factory.genJextTemplate();
 	}
 }

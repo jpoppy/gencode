@@ -61,8 +61,8 @@ public class GenerateCode extends AbstractGenerate implements Generate {
 			FileUtils.writeFile(content.toString(), filePath);
 
 			logger.info(fileType.getType() + ": {}", filePath);
-		}else if (fileType.getFileNameExtension().endsWith(".jsp")) {// 生成jsp
-			String filePath = viewPath + Resources.TPL_REQUEST_MAPPING + separator + fileType.getFileNameExtension();
+		}else if (fileType.getFileNameExtension().endsWith(".jetx")) {// 生成jetx
+			String filePath = viewPath + Resources.TPL_REQUEST_MAPPING + separator+StringUtils.uncapitalize(table.getClazzName()) + fileType.getFileNameExtension();
 			FileUtils.writeFile(content.toString(), filePath);
 
 			logger.info(fileType.getType() + ": {}", filePath);

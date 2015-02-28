@@ -93,7 +93,7 @@ public abstract class AbstractGenerate {
 			logger.info("webapp Path: {}", webappPath);
 
 			// 视图文件路径
-			viewPath = StringUtils.replace(projectPath + "/src/main/webapp/WEB-INF/views/", "/", separator);
+			viewPath = StringUtils.replace(projectPath + "/generate/views/", "/", separator);
 			logger.info("View Path: {}", viewPath);
 
 			// 代码模板配置
@@ -104,7 +104,6 @@ public abstract class AbstractGenerate {
 			model.put("packageName", Resources.TPL_PACKAGE_NAME);
 			model.put("functionName", Resources.TPL_FUNCTION_NAME);
 			model.put("requestMapping", Resources.TPL_REQUEST_MAPPING);
-			model.put("indexName", Resources.TPL_INDEX_NAME);
 
 			model.put("pknEntity", Resources.PKN_ENTITY);
 			model.put("pknDAO", Resources.PKN_DAO);

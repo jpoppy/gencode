@@ -1,3 +1,4 @@
+#define(Column pk)
 #define(String pknController,String instanceName,String pknEntity,String className,String pknService,String requestMapping,String functionName)
 package ${pknController};
 
@@ -35,10 +36,10 @@ public class ${className}Controller extends BaseController{
 	private ${className}Service ${instanceName}Service;
 	private static final Logger logger = LoggerFactory.getLogger(${className}Controller.class);
 	
-	private static final String CREATE = "${requestMapping}/create";
-	private static final String UPDATE = "${requestMapping}/update";
-	private static final String LIST = "${requestMapping}/list";
-	private static final String VIEW = "${requestMapping}/view";
+	private static final String CREATE = "/${requestMapping}/create";
+	private static final String UPDATE = "/${requestMapping}/update";
+	private static final String LIST = "/${requestMapping}/${instanceName}list";
+	private static final String VIEW = "/${requestMapping}/view";
 	
 	@RequestMapping("/list")
 	public String list(DwzPageVO vo, ModelMap map, ${className} query) {
@@ -62,7 +63,7 @@ public class ${className}Controller extends BaseController{
 	@Log(message="删除${functionName}[id={0}]")
 	@RequestMapping(value = "/delete")
 	@ResponseBody
-	public AjaxDone delete(@RequestParam("id") Long id) {
+	public AjaxDone delete(@RequestParam("id") ${pk.javaType} id) {
 		${instanceName}Service.deleteByPrimaryKey(id);
 		LogUitls.putArgs(LogMessageObject.newWrite().setObjects(new Object[]{id}));
 		return AjaxDone.newOk("信息${functionName}删除成功", "");
@@ -73,17 +74,23 @@ public class ${className}Controller extends BaseController{
 	@ResponseBody
 	public AjaxDone deleteBatch(@RequestParam("ids") String ids) {
 		logger.debug("ids {}", ids);
-		LogUitls.putArgs(LogMessageObject.newWrite().setObjects(new Object[]{Arrays.toString(ids)}));
+		LogUitls.putArgs(LogMessageObject.newWrite().setObjects(new Object[]{ids}));
 		if (StringUtils.isBlank(ids)) {
 			return AjaxDone.newError("请选择要删除的信息");
 		} else {
-			List<Long> idList = new ArrayList<Long>();
+			List<${pk.javaType}> idList = new ArrayList<${pk.javaType}>();
 			String[] idsArr = ids.split(",");
 			for (String id : idsArr) {
 				if (StringUtils.isBlank(id)) {
 					continue;
 				}
-				idList.add(Long.parseLong(id));
+				#if("String" == pk.javaType)
+				idList.add(id);
+				#elseif("Long" == pk.javaType || "Double" == pk.javaType)
+				idList.add(${pk.javaType}.parse${pk.javaType}(id));
+				#else
+				idList.add((${pk.javaType})id);
+				#end
 			}
 			${instanceName}Service.deleteBatchByPrimaryKey(idList);
 		}

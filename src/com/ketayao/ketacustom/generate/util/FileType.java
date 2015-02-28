@@ -17,10 +17,10 @@ public enum FileType {
 	SERVICE_IMPL("service.impl", Resources.PKN_SERVICE_IMPL,Resources.JAVA_SERVICE_IMPL_TEMPLATE,"ServiceImpl.java"), 
 	CONTROLLER("controller", Resources.PKN_CONTROLLER,Resources.JAVA_CONTROLLER_TEMPLATE,"Controller.java"), 
 	
-	JSP_LIST("jsp_list", null,Resources.JSP_LIST_TEMPLATE,"list.jsp"),
-	JSP_CREATE("jsp_create", null,Resources.JSP_CREATE_TEMPLATE,"create.jsp"),
-	JSP_UPDATE("jsp_update", null,Resources.JSP_UPDATE_TEMPLATE,"update.jsp"),
-	JSP_VIEW("jsp_view", null,Resources.JSP_VIEW_TEMPLATE,"view.jsp");
+	JETX_LIST("jetx_list", null,Resources.JETX_LIST_TEMPLATE,"list.jetx"),
+	JETX_CREATE("jetx_create", null,Resources.JETX_CREATE_TEMPLATE,"create.jetx"),
+	JETX_UPDATE("jetx_update", null,Resources.JETX_UPDATE_TEMPLATE,"update.jetx"),
+	JETX_VIEW("jetx_view", null,Resources.JETX_VIEW_TEMPLATE,"view.jetx");
 	
 	
 	// 成员变量
