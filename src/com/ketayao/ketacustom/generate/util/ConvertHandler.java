@@ -66,7 +66,7 @@ public class ConvertHandler {
 	private static void cleanColumn(Table table) {
 		if (table.getPk() != null && table.getColumns() != null) {
 			for (Column col : table.getColumns()) {
-				if (col.getName().equalsIgnoreCase(table.getPk().getName())){
+				if (col.getName().equalsIgnoreCase(table.getPk().getName())) {
 					table.setPk(col);
 				}
 			}
@@ -75,16 +75,16 @@ public class ConvertHandler {
 	}
 
 	/**
-	 * 根据表转换类名
-	 * 删除t_table前缀 t_
+	 * 根据表转换类名 删除t_table前缀 t_
+	 * 
 	 * @param str
 	 * @return
 	 */
 	public static String table2clazzName(String str) {
 		if (str == null || "".equals(str))
 			return null;
-		
-		if(str.toLowerCase().startsWith("t_")){
+
+		if (str.toLowerCase().startsWith("t_")) {
 			str = str.substring(2);
 		}
 		String[] arrs = str.split("_");
@@ -141,8 +141,8 @@ public class ConvertHandler {
 	 * 
 	 */
 	public static String beanPropertyToDBColum(String name) {
-		if (!StringUtils.isBlank(name)) {
-			return "";
+		if (StringUtils.isBlank(name)) {
+			throw new IllegalArgumentException("name can not be null");
 		}
 		StringBuilder result = new StringBuilder();
 		result.append(name.substring(0, 1).toLowerCase());

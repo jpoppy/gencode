@@ -43,7 +43,7 @@
 			#end
 		</where>
 		<if test="@Ognl@isNotBlank(orderSql)">
-			${orderSql}
+			#[[${orderSql}]]#
 		</if>
 	</select>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap">
