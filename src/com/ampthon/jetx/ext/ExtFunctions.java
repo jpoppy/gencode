@@ -13,6 +13,16 @@ public class ExtFunctions {
 		}
 		return var.substring(0, 1).toLowerCase() + var.substring(1);
 	}
+	
+	public static String colum2batis(String var) {
+		if("DATETIME".equals(var)){
+			return "TIMESTAMP";
+		}else if("LONGTEXT".equals(var)){
+			return "LONGVARCHAR";
+		}
+		return var;
+	}
+	
 	public static String UUID() {
 		return java.util.UUID.randomUUID().toString().replaceAll("-", "");
 	}

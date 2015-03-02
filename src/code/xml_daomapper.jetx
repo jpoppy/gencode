@@ -5,9 +5,9 @@
 <mapper namespace="${pknDAO}.${className}Mapper">
 	<cache />
 	<resultMap id="BaseResultMap" type="${pknEntity}.${className}">
-		<id column="${pk.name}" property="${pk.fieldName}" jdbcType="${pk.type}" />
+		<id column="${pk.name}" property="${pk.fieldName}" jdbcType="${colum2batis(pk.type)}" />
 		#for(Column column : columns)
-		<result column="${column.name}" property="${column.fieldName}" jdbcType="${column.type}" />
+		<result column="${column.name}" property="${column.fieldName}" jdbcType="${colum2batis(column.type)}" />
 		#end
 	</resultMap>
 	<sql id="Base_Column_List">
@@ -19,11 +19,11 @@
 		from ${tableName}
 		<where>
 			<if test="@Ognl@isNotBlank(${pk.fieldName})">
-				and ${pk.name}=#{${pk.fieldName},jdbcType=${pk.type}}
+				and ${pk.name}=#{${pk.fieldName},jdbcType=${colum2batis(pk.type)}}
 			</if>
 			#for(Column column : columns)
 			<if test="@Ognl@isNotBlank(${column.fieldName})">
-				and ${column.name}=#{${column.fieldName},jdbcType=${column.type}}
+				and ${column.name}=#{${column.fieldName},jdbcType=${colum2batis(column.type)}}
 			</if>
 			#end
 		</where>
@@ -34,11 +34,11 @@
 		from ${tableName}
 		<where>
 			<if test="@Ognl@isNotBlank(${pk.fieldName})">
-				and ${pk.name}=#{${pk.fieldName},jdbcType=${pk.type}}
+				and ${pk.name}=#{${pk.fieldName},jdbcType=${colum2batis(pk.type)}}
 			</if>
 			#for(Column column : columns)
 			<if test="@Ognl@isNotBlank(${column.fieldName})">
-				and ${column.name}=#{${column.fieldName},jdbcType=${column.type}}
+				and ${column.name}=#{${column.fieldName},jdbcType=${colum2batis(column.type)}}
 			</if>
 			#end
 		</where>
@@ -50,11 +50,11 @@
 		select
 		<include refid="Base_Column_List" />
 		from ${tableName}
-		where ${pk.name} = #{${pk.fieldName},jdbcType=${pk.type}}
+		where ${pk.name} = #{${pk.fieldName},jdbcType=${colum2batis(pk.type)}}
 	</select>
 	<delete id="deleteByPrimaryKey">
 		delete from ${tableName}
-		where ${pk.name} = #{${pk.fieldName},jdbcType=${pk.type}}
+		where ${pk.name} = #{${pk.fieldName},jdbcType=${colum2batis(pk.type)}}
 	</delete>
 	<delete id="deleteBatchByPrimaryKey" parameterType="java.util.List">
 		delete from ${tableName} where ${pk.name} in
@@ -66,9 +66,9 @@
 		insert into ${tableName} 
 		(${pk.name} ,#for(Column column : columns)${column.name}#if(!for.last) ,#end#end )
 		values 
-		(#{${pk.fieldName},jdbcType=${pk.type}}, 
+		(#{${pk.fieldName},jdbcType=${colum2batis(pk.type)}}, 
 		#for(Column column : columns)
-		#{${column.fieldName},jdbcType=${column.type}}#if(!for.last) ,#end#end
+		#{${column.fieldName},jdbcType=${colum2batis(column.type)}}#if(!for.last) ,#end#end
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="${pknEntity}.${className}">
@@ -85,11 +85,11 @@
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="@Ognl@isNotBlank(${pk.fieldName})">
-				#{${pk.fieldName},jdbcType=${pk.type}},
+				#{${pk.fieldName},jdbcType=${colum2batis(pk.type)}},
 			</if>
 			#for(Column column : columns)
 			<if test="@Ognl@isNotBlank(${column.fieldName})">
-				#{${column.fieldName},jdbcType=${column.type}},
+				#{${column.fieldName},jdbcType=${colum2batis(column.type)}},
 			</if>
 			#end
 		</trim>
@@ -99,18 +99,18 @@
 		<set>
 			#for(Column column : columns)
 			<if test="@Ognl@isNotBlank(${column.fieldName})">
-				${column.name} = #{${column.fieldName},jdbcType=${column.type}} ,
+				${column.name} = #{${column.fieldName},jdbcType=${colum2batis(column.type)}} ,
 			</if>
 			#end
 		</set>
-		where ${pk.name} = #{${pk.fieldName},jdbcType=${pk.type}}
+		where ${pk.name} = #{${pk.fieldName},jdbcType=${colum2batis(pk.type)}}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="${pknEntity}.${className}">
-		update t_org
+		update ${tableName} 
 		set 
 		#for(Column column : columns)
-		${column.name} = #{${column.fieldName},jdbcType=${column.type}}#if(!for.last) ,#end
+		${column.name} = #{${column.fieldName},jdbcType=${colum2batis(column.type)}}#if(!for.last) ,#end
 		#end
-		where ${pk.name} = #{${pk.fieldName},jdbcType=${pk.type}}
+		where ${pk.name} = #{${pk.fieldName},jdbcType=${colum2batis(pk.type)}}
 	</update>
 </mapper>

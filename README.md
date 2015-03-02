@@ -15,6 +15,7 @@
 **表结构约束**
 
 * 有且仅有一个主键
+* 不支持enum类型
 
 ##使用方法
 * 修改template_settings.properties配置文件内相应的配置项
