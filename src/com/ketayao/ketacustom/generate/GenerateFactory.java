@@ -75,9 +75,12 @@ public class GenerateFactory {
 		}
 	}
 
-	public void genServer() {
+	public void genSql() {
 		try {
-			new GenerateServer().generate();
+			if (table == null) {
+				init();
+			}
+			new GenerateSettings().generate(table);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

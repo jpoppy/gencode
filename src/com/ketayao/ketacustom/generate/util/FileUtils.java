@@ -46,8 +46,9 @@ public class FileUtils {
 	public static boolean createFile(String descFileName) {
 		File file = new File(descFileName);
 		if (file.exists()) {
-			logger.debug("文件 " + descFileName + " 已存在!");
-			return false;
+			logger.debug("文件 " + descFileName + " 已存在!,删除文件...");
+			file.delete();
+			logger.debug("文件 " + descFileName + " 删除删除成功");
 		}
 		if (descFileName.endsWith(File.separator)) {
 			logger.debug(descFileName + " 为目录，不能创建目录!");

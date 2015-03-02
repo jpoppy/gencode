@@ -30,6 +30,7 @@ public abstract class AbstractGenerate {
 	protected String testJavaPath;
 	protected String testJavaResourcesPath;
 	protected String viewPath;
+	protected String sqlPath;
 	protected String webappPath;
 	protected String projectName;
 	
@@ -96,6 +97,9 @@ public abstract class AbstractGenerate {
 			viewPath = StringUtils.replace(projectPath + "/generate/views/", "/", separator);
 			logger.info("View Path: {}", viewPath);
 
+			sqlPath = StringUtils.replace(projectPath + "/generate/sql/", "/", separator);
+			logger.info("sqlPath Path: {}", sqlPath);
+			
 			// 代码模板配置
 			engine = JetEngine.create();
 			

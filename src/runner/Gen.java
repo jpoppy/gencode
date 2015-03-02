@@ -16,6 +16,7 @@ public class Gen {
 		GenerateFactory factory = new GenerateFactory();
 		factory.genJavaTemplate();
 		factory.genJextTemplate();
+		factory.genSql();
 		/**
 		 * 打开生成的文件夹
 		 */

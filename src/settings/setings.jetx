@@ -1,0 +1,29 @@
+#define(String sqlIdPrefix,String functionName,String requestMapping,String pknEntity)
+/*
+如果生成的实体类不包含在jetbrick-template.properties需把该包名配置到jetx.import.classes 内
+jetx.import.classes = ${pknEntity}.*
+*/
+
+
+----------sql语句，在数据库执行后，需要在界面稍加配置父级菜单-------------
+insert into t_menu (id, name,description, pageurl, type,state, sort) values
+		('${sqlIdPrefix}_list', '${functionName}',	'${functionName}', '/${requestMapping}/list', 1,'是', 99);
+		
+insert into t_menu (id, name,pid,description, pageurl, type,state, sort) values
+		('${sqlIdPrefix}_add', '添加${functionName}', '${sqlIdPrefix}_list'	,'添加${functionName}', '/${requestMapping}/add', 0,'是', 99);
+		
+insert into t_menu (id, name,pid,description, pageurl, type,state, sort) values
+		('${sqlIdPrefix}_delete', '删除${functionName}', '${sqlIdPrefix}_list'	,'删除${functionName}', '/${requestMapping}/delete', 0,'是', 99);
+		
+insert into t_menu (id, name,pid,description, pageurl, type,state, sort) values
+		('${sqlIdPrefix}_deleteBatch', '批量删除${functionName}', '${sqlIdPrefix}_list'	,'批量删除${functionName}', '/${requestMapping}/deleteBatch', 0,'是', 99);
+		
+insert into t_menu (id, name,pid,description, pageurl, type,state, sort) values
+		('${sqlIdPrefix}_update', '编辑${functionName}', '${sqlIdPrefix}_list'	,'编辑${functionName}', '/${requestMapping}/update', 0,'是', 99);
+		
+		
+insert into t_role_menu (id, roleId, menuId	) values ('${UUID()}', 'admin', '${sqlIdPrefix}_list');
+insert into t_role_menu (id, roleId, menuId	) values ('${UUID()}', 'admin', '${sqlIdPrefix}_add');
+insert into t_role_menu (id, roleId, menuId	) values ('${UUID()}', 'admin', '${sqlIdPrefix}_delete');
+insert into t_role_menu (id, roleId, menuId	) values ('${UUID()}', 'admin', '${sqlIdPrefix}_deleteBatch');
+insert into t_role_menu (id, roleId, menuId	) values ('${UUID()}', 'admin', '${sqlIdPrefix}_update');

@@ -13,6 +13,9 @@ public class ExtFunctions {
 		}
 		return var.substring(0, 1).toLowerCase() + var.substring(1);
 	}
+	public static String UUID() {
+		return java.util.UUID.randomUUID().toString().replaceAll("-", "");
+	}
 	public static String now() {
 		DateTime d = new DateTime();
 		return d.toString("yyyy-MM-dd HH:mm:ss");
