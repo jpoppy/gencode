@@ -18,6 +18,7 @@
 
 ##使用方法
 1. 修改template_settings.properties配置文件内相应的配置项
+
 ```
 tpl.table.name=[需要生成的表名称，必须配置]
 tpl.package.name=[生成的实体类等所在的包，必须配置]
