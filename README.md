@@ -26,7 +26,6 @@ tpl.class.name=[对应的实体类的名称，可选配置，不配置根据表�
 tpl.function.name=[添加、删除时的信息提示，必须配置]
 tpl.request.mapping=[URL访问路径，可选配置不配置将使用`/`]
 ```
-
 2. 运行代码生成工具
 
 ```
