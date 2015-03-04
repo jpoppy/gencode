@@ -3,7 +3,9 @@
 #define(String pknEntity,String tableName,boolean hasDate,boolean hasBigDecimal,String className,String pknDAO)
 #define(Column pk,List columns)
 <mapper namespace="${pknDAO}.${className}Mapper">
+	<!-- 
 	<cache />
+	 -->
 	<resultMap id="BaseResultMap" type="${pknEntity}.${className}">
 		<id column="${pk.name}" property="${pk.fieldName}" jdbcType="${colum2batis(pk.type)}" />
 		#for(Column column : columns)

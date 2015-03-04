@@ -67,7 +67,7 @@
 				</td>
 				#[[<td>${pageInfo.startRow+for.index-1} </td>]]#
 				#for(Column column : columns)
-				<td>#[[${item.]]#${column.fieldName}#[[}]]#</td>
+				<td>#[[${item.]]#${column.fieldName}#if(column.javaType=="Date").format()#end#[[}]]#</td>
 				#end
 				<td>
 				#[[#tag hasPermission("]]#/${requestMapping}/delete")

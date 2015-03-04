@@ -40,7 +40,7 @@ public class ${className}Controller extends BaseController{
 	private static final String CREATE = "/${requestMapping}/${instanceName}Add";
 	private static final String UPDATE = "/${requestMapping}/${instanceName}Edit";
 	private static final String LIST = "/${requestMapping}/${instanceName}List";
-	private static final String VIEW = "/${requestMapping}/view";
+	//private static final String VIEW = "/${requestMapping}/view";
 	
 	@RequestMapping("/list")
 	public String list(DwzPageVO vo, ModelMap map, ${className} query) {
@@ -87,7 +87,7 @@ public class ${className}Controller extends BaseController{
 				}
 				#if("String" == pk.javaType)
 				idList.add(id);
-				#elseif("Long" == pk.javaType || "Double" == pk.javaType)
+				#elseif("Long" == pk.javaType || "Double" == pk.javaType || "Integer" == pk.javaType)
 				idList.add(${pk.javaType}.parse${pk.javaType}(id));
 				#else
 				idList.add((${pk.javaType})id);
@@ -95,7 +95,7 @@ public class ${className}Controller extends BaseController{
 			}
 			${instanceName}Service.deleteBatchByPrimaryKey(idList);
 		}
-		return AjaxDone.newOk("信息${functionName}删除成功", "");
+		return AjaxDone.newOk("${functionName}删除成功", "");
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
